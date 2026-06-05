@@ -1,29 +1,22 @@
 {
-  "name": "grphiwavemotion-backend",
+  "name": "grphiwavemotion",
   "version": "1.0.0",
-  "description": "Production Node.js + Express backend for the GRPHIWAVEMOTION portfolio website. Handles contact form submission via Nodemailer + Gmail SMTP.",
-  "main": "server.js",
-  "type": "module",
+  "description": "Static portfolio website for GRPHIWAVEMOTION.",
   "scripts": {
-    "start":   "node server.js",
-    "dev":     "node --watch server.js",
-    "test":    "echo \"No tests configured\" && exit 0"
+    "start": "node generate-config.js && npx serve .",
+    "build": "node generate-config.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "serve": "^14.2.4"
   },
   "keywords": [
     "portfolio",
-    "express",
-    "nodemailer",
-    "contact-form"
+    "static-site",
+    "emailjs"
   ],
   "author": "GRPHIWAVEMOTION",
-  "license": "MIT",
-  "engines": {
-    "node": ">=18.0.0"
-  },
-  "dependencies": {
-    "cors":       "^2.8.5",
-    "dotenv":     "^16.4.5",
-    "express":    "^4.19.2",
-    "nodemailer": "^6.9.14"
-  }
+  "license": "MIT"
 }

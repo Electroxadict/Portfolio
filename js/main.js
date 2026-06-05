@@ -1,8 +1,17 @@
 /* ============================================================
    GRPHIWAVEMOTION — main.js
    All original animations preserved + upgraded contact form
-   that POSTs to Express backend /send endpoint.
+   powered by EmailJS (fully client-side).
    ============================================================ */
+
+/* ─────────────────────────────────────────
+   EMAILJS INITIALIZATION
+   Replace 'YOUR_PUBLIC_KEY' with your actual 
+   key from the EmailJS dashboard.
+   ───────────────────────────────────────── */
+emailjs.init({
+  publicKey: window.EMAILJS_CONFIG.PUBLIC_KEY,
+});
 
 /* ─────────────────────────────────────────
    CUSTOM CURSOR
@@ -224,10 +233,9 @@ window.addEventListener('scroll', () => {
 
 
 /* ─────────────────────────────────────────
-   CONTACT FORM — AJAX SUBMISSION
-   Collects validated form data and POSTs
-   it to the Express /send endpoint.
-   Shows neon success/error messages inline.
+   CONTACT FORM — EMAILJS SUBMISSION
+   Collects validated form data and sends
+   via EmailJS SDK.
    ───────────────────────────────────────── */
 
 const contactForm = document.getElementById('contact-form');
@@ -295,31 +303,22 @@ if (contactForm) {
     btn.style.background    = 'linear-gradient(135deg, var(--neon-purple), var(--neon-pink))';
 
     try {
-      // ── POST TO BACKEND ──
-      // Using absolute URL to ensure it hits the Express server even if served via Live Server
-      const backendUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-        ? 'http://localhost:3000/send'
-        : '/send';
+      // ── SEND VIA EMAILJS ──
+      // Map these variables to your EmailJS template (e.g., {{from_name}}, {{message}}, etc.)
+      const templateParams = {
+        from_name: name,
+        reply_to:  email,
+        service:   service,
+        message:   message
+      };
 
-      const response = await fetch(backendUrl, {
-        method:  'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body:    JSON.stringify({ name, email, service, message })
-      });
+      const response = await emailjs.send(
+        window.EMAILJS_CONFIG.SERVICE_ID, 
+        window.EMAILJS_CONFIG.TEMPLATE_ID, 
+        templateParams
+      );
 
-      // Check if response is actually JSON before parsing
-      const contentType = response.headers.get('content-type');
-      let data;
-      
-      if (contentType && contentType.includes('application/json')) {
-        data = await response.json();
-      } else {
-        // Handle non-JSON response (e.g. server crash or HTML error page)
-        const text = await response.text();
-        throw new Error(`Server at ${response.url} returned non-JSON response: ${response.status} ${response.statusText}`);
-      }
-
-      if (response.ok && data.success) {
+      if (response.status === 200) {
         // ── SUCCESS STATE ──
         btn.innerHTML        = '✓ MESSAGE SENT — WE\'LL BE IN TOUCH';
         btn.style.background = 'linear-gradient(135deg, #00a86b, #00d4a0)';
@@ -336,16 +335,15 @@ if (contactForm) {
         }, 4000);
 
       } else {
-        // ── SERVER ERROR ──
-        throw new Error(data.message || 'Server error');
+        throw new Error(`EmailJS error status: ${response.status}`);
       }
 
     } catch (err) {
-      // ── NETWORK / UNKNOWN ERROR ──
-      console.error('Form submission error:', err);
+      // ── ERROR ──
+      console.error('EmailJS submission error:', err);
       btn.innerHTML        = '✕ TRANSMISSION FAILED';
       btn.style.background = 'linear-gradient(135deg, #7a0000, #c80000)';
-      showMessage(`✕ ERROR: ${err.message || 'COULD NOT SEND MESSAGE. TRY AGAIN.'}`, 'error');
+      showMessage(`✕ ERROR: ${err.text || err.message || 'COULD NOT SEND MESSAGE. TRY AGAIN.'}`, 'error');
 
       // Reset button after 3 seconds
       setTimeout(() => {
