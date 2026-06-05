@@ -1,4 +1,5 @@
 {
+  "version": 2,
   "buildCommand": "node generate-config.js",
   "outputDirectory": ".",
   "cleanUrls": true
