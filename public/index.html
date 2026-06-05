@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GRPHIWAVEMOTION — Designing the Future</title>
+
+  <!-- Google Fonts — Orbitron + Rajdhani + Share Tech Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap"
+    rel="stylesheet">
+
+  <!-- External stylesheet (extracted from original inline styles) -->
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+
+  <!-- ═══════════════════════════════════
+       LOADER SCREEN
+       Shows while page assets load.
+       Hides after 2.4s via main.js.
+  ════════════════════════════════════ -->
+  <div id="loader">
+    <div class="loader-text">GRPHIWAVEMOTION</div>
+    <div class="loader-bar-wrap">
+      <div class="loader-bar"></div>
+    </div>
+    <div class="loader-sub">// INITIALIZING SYSTEMS...</div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       CUSTOM CURSOR LAYERS
+  ════════════════════════════════════ -->
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+  <div id="cursor-trail"></div>
+
+  <!-- ═══════════════════════════════════
+       BACKGROUND EFFECTS
+  ════════════════════════════════════ -->
+  <div class="grid-bg"></div>
+  <div class="scanlines"></div>
+
+  <!-- ═══════════════════════════════════
+       NAVIGATION
+  ════════════════════════════════════ -->
+  <nav>
+    <a href="#hero" class="nav-logo">GRPHIWAVEMOTION</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#portfolio">Work</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#tools">Tools</a></li>
+      <li><a href="#testimonials">Reviews</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Get in Touch</a>
+  </nav>
+
+  <!-- ═══════════════════════════════════
+       HERO SECTION
+  ════════════════════════════════════ -->
+  <section id="hero">
+    <!-- Particle canvas — animated via main.js -->
+    <canvas id="hero-canvas"></canvas>
+
+    <div class="hero-content">
+      <div class="hero-badge">Available for Projects</div>
+      <h1 class="hero-title">GRPHIWAVEMOTION</h1>
+      <div class="hero-title-sub">Graphic Design · Video Editing · VFX</div>
+      <p class="hero-tagline">"Designing the <span>Future</span>, Frame by Frame"</p>
+      <div class="hero-btns">
+        <a href="#portfolio" class="btn-primary">View My Work</a>
+        <a href="#contact" class="btn-outline">Start a Project</a>
+      </div>
+    </div>
+
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <div class="neon-divider"></div>
+
+  <!-- ═══════════════════════════════════
+       ABOUT SECTION
+  ════════════════════════════════════ -->
+  <section id="about">
+    <div class="orb orb-1"></div>
+    <div class="section-inner">
+      <div class="about-grid">
+
+        <!-- Avatar visual with corner brackets -->
+        <div class="about-visual fade-in">
+          <div class="about-visual-inner">
+            <div class="about-avatar-placeholder">GW</div>
+            <div class="about-corner tl"></div>
+            <div class="about-corner tr"></div>
+            <div class="about-corner bl"></div>
+            <div class="about-corner br"></div>
+          </div>
+          <div class="about-badge-float">
+            <span class="num">5+</span>
+            <span class="label">Years of Creative Evolution</span>
+          </div>
+        </div>
+
+        <!-- Bio text + skills -->
+        <div class="fade-in">
+          <div class="section-label">01 / About</div>
+          <h2 class="section-title">Crafting <span class="accent">Digital Worlds</span> With Purpose</h2>
+          <p class="about-desc">
+            I'm a <strong>creative professional</strong> operating at the intersection of visual design
+            and cinematic storytelling. From building brands that resonate, to editing sequences that
+            captivate — every pixel and every frame is crafted with obsessive precision.
+            My work lives in the space where <strong>art meets technology</strong>.
+          </p>
+          <div class="skills-grid">
+            <div class="skill-chip">Motion Graphics</div>
+            <div class="skill-chip">Branding Design</div>
+            <div class="skill-chip">Video Editing</div>
+            <div class="skill-chip">VFX & Compositing</div>
+            <div class="skill-chip">UI/UX Design</div>
+            <div class="skill-chip">Color Grading</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="neon-divider"></div>
+
+  <!-- ═══════════════════════════════════
+       PORTFOLIO SECTION
+  ════════════════════════════════════ -->
+  <section id="portfolio">
+    <div class="section-inner">
+      <div class="section-label fade-in">02 / Portfolio</div>
+      <h2 class="section-title fade-in">Selected <span class="accent">Works</span></h2>
+
+      <!-- Filter tabs -->
+      <div class="portfolio-tabs fade-in">
+        <button class="tab-btn active" onclick="filterPortfolio(this,'all')">All Work</button>
+        <button class="tab-btn" onclick="filterPortfolio(this,'design')">Graphic Design</button>
+        <button class="tab-btn" onclick="filterPortfolio(this,'video')">Video Editing</button>
+      </div>
+
+      <!-- Portfolio grid -->
+      <div class="portfolio-grid" id="portfolio-grid">
+        <div class="portfolio-card fade-in" data-cat="design">
+          <div class="portfolio-bg portfolio-gradient-1">
+            <div class="portfolio-art" style="color:var(--neon-blue)">◈</div>
+          </div>
+          <div class="portfolio-overlay">
+            <div class="portfolio-tag">Branding · Identity</div>
+            <div class="portfolio-name">NEXUS Corp Identity</div>
+            <div class="portfolio-desc">Full brand system — logo, palette, typography</div>
+          </div>
+          <div class="portfolio-icon">↗</div>
+        </div>
+
+        <div class="portfolio-card fade-in" data-cat="video">
+          <div class="portfolio-bg portfolio-gradient-2">
+            <div class="portfolio-art" style="color:var(--neon-purple)">▶</div>
+          </div>
+          <div class="portfolio-overlay">
+            <div class="portfolio-tag">Motion · Reel</div>
+            <div class="portfolio-name">Cinematic Opener</div>
+            <div class="portfolio-desc">VFX title sequence with particle systems</div>
+          </div>
+          <div class="portfolio-icon">▶</div>
+        </div>
+
+        <div class="portfolio-card fade-in" data-cat="design">
+          <div class="portfolio-bg portfolio-gradient-3">
+            <div class="portfolio-art" style="color:var(--neon-pink)">✦</div>
+          </div>
+          <div class="portfolio-overlay">
+            <div class="portfolio-tag">Social Media · Content</div>
+            <div class="portfolio-name">Cyberpunk Campaign</div>
+            <div class="portfolio-desc">150+ assets for multi-platform rollout</div>
+          </div>
+          <div class="portfolio-icon">↗</div>
+        </div>
+
+        <div class="portfolio-card fade-in" data-cat="video">
+          <div class="portfolio-bg portfolio-gradient-4">
+            <div class="portfolio-art" style="color:var(--neon-cyan)">◎</div>
+          </div>
+          <div class="portfolio-overlay">
+            <div class="portfolio-tag">Video Edit · Documentary</div>
+            <div class="portfolio-name">Dark Matter Short</div>
+            <div class="portfolio-desc">Award-winning short film edit & grade</div>
+          </div>
+          <div class="portfolio-icon">▶</div>
+        </div>
+
+        <div class="portfolio-card fade-in" data-cat="design">
+          <div class="portfolio-bg portfolio-gradient-5">
+            <div class="portfolio-art" style="color:#ff8c00">⬡</div>
+          </div>
+          <div class="portfolio-overlay">
+            <div class="portfolio-tag">Motion · Logo</div>
+            <div class="portfolio-name">Holographic Logo</div>
+            <div class="portfolio-desc">3D logo reveal with light simulation</div>
+          </div>
+          <div class="portfolio-icon">▶</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="neon-divider"></div>
+
+  <!-- ═══════════════════════════════════
+       SERVICES SECTION
+  ════════════════════════════════════ -->
+  <section id="services">
+    <div class="orb orb-2"></div>
+    <div class="section-inner">
+      <div class="section-label fade-in">03 / Services</div>
+      <h2 class="section-title fade-in">What I <span class="accent">Deliver</span></h2>
+      <div class="services-grid">
+        <div class="service-card fade-in">
+          <span class="service-icon">◈</span>
+          <span class="service-num">// 01</span>
+          <div class="service-name">Branding Design</div>
+          <p class="service-desc">End-to-end brand identity systems — logos, guidelines, typography, and visual language
+            that sets you apart in a crowded market.</p>
+        </div>
+        <div class="service-card fade-in">
+          <span class="service-icon">⬡</span>
+          <span class="service-num">// 02</span>
+          <div class="service-name">Social Media Content</div>
+          <p class="service-desc">Scroll-stopping visuals tailored for every platform. Reels, carousels, stories —
+            content engineered to convert and captivate.</p>
+        </div>
+        <div class="service-card fade-in">
+          <span class="service-icon">◎</span>
+          <span class="service-num">// 03</span>
+          <div class="service-name">Motion Graphics</div>
+          <p class="service-desc">Kinetic typography, animated infographics, and 2D/3D motion that breathes life into
+            static concepts and brand stories.</p>
+        </div>
+        <div class="service-card fade-in">
+          <span class="service-icon">▶</span>
+          <span class="service-num">// 04</span>
+          <div class="service-name">Video Editing</div>
+          <p class="service-desc">Narrative-driven editing with color grading, sound design, and VFX integration that
+            transforms raw footage into cinematic experiences.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="neon-divider"></div>
+
+  <!-- ═══════════════════════════════════
+       TOOLS / TECH STACK SECTION
+  ════════════════════════════════════ -->
+  <section id="tools">
+    <div class="section-inner">
+      <div class="section-label fade-in">04 / Tech Stack</div>
+      <h2 class="section-title fade-in">Tools of the <span class="accent">Trade</span></h2>
+      <div class="tools-grid">
+        <div class="tool-card fade-in">
+          <span class="tool-icon">🎬</span>
+          <div class="tool-name">After Effects</div>
+          <div class="tool-sub">Motion · VFX</div>
+          <div class="tool-bar" style="background:linear-gradient(90deg,var(--neon-blue),var(--neon-purple))"></div>
+        </div>
+        <div class="tool-card fade-in">
+          <span class="tool-icon">🎞️</span>
+          <div class="tool-name">Premiere Pro</div>
+          <div class="tool-sub">Video Editing</div>
+          <div class="tool-bar" style="background:linear-gradient(90deg,var(--neon-purple),var(--neon-pink))"></div>
+        </div>
+        <div class="tool-card fade-in">
+          <span class="tool-icon">🖼️</span>
+          <div class="tool-name">Photoshop</div>
+          <div class="tool-sub">Compositing</div>
+          <div class="tool-bar" style="background:linear-gradient(90deg,#00c8ff,var(--neon-blue))"></div>
+        </div>
+        <div class="tool-card fade-in">
+          <span class="tool-icon">✏️</span>
+          <div class="tool-name">Illustrator</div>
+          <div class="tool-sub">Vector · Brand</div>
+          <div class="tool-bar" style="background:linear-gradient(90deg,#ff8c00,var(--neon-pink))"></div>
+        </div>
+        <div class="tool-card fade-in">
+          <span class="tool-icon">🎨</span>
+          <div class="tool-name">DaVinci Resolve</div>
+          <div class="tool-sub">Color Grading</div>
+          <div class="tool-bar" style="background:linear-gradient(90deg,var(--neon-cyan),var(--neon-blue))"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="neon-divider"></div>
+
+  <!-- ═══════════════════════════════════
+       TESTIMONIALS SECTION
+  ════════════════════════════════════ -->
+  <section id="testimonials">
+    <div class="orb orb-3"></div>
+    <div class="section-inner">
+      <div class="section-label fade-in">05 / Testimonials</div>
+      <h2 class="section-title fade-in">Client <span class="accent">Signals</span></h2>
+      <div class="testimonials-grid">
+
+        <div class="testi-card fade-in">
+          <div class="testi-stars">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span>
+            <span class="star">★</span><span class="star">★</span>
+          </div>
+          <p class="testi-text">"The brand identity delivered was beyond our expectations. Every element felt like it
+            came from the future. Our engagement metrics tripled post-launch. Truly visionary work."</p>
+          <div class="testi-author">
+            <div class="testi-avatar">AK</div>
+            <div>
+              <div class="testi-name">Alex Kovar</div>
+              <div class="testi-role">CEO, Nexus Ventures</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-card fade-in">
+          <div class="testi-stars">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span>
+            <span class="star">★</span><span class="star">★</span>
+          </div>
+          <p class="testi-text">"Working with Grphiwavemotion transformed our campaign completely. The motion graphics
+            captured exactly what we envisioned — and elevated it far beyond. A rare creative mind."</p>
+          <div class="testi-author">
+            <div class="testi-avatar" style="background:linear-gradient(135deg,var(--neon-purple),var(--neon-pink))">SR
+            </div>
+            <div>
+              <div class="testi-name">Sara Reinholt</div>
+              <div class="testi-role">Creative Director, Pulsewave</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-card fade-in">
+          <div class="testi-stars">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span>
+            <span class="star">★</span><span class="star">★</span>
+          </div>
+          <p class="testi-text">"The video edit for our product launch was cinematic perfection. Cut, color, music —
+            everything synced with our vision. We'll absolutely be back for every future project."</p>
+          <div class="testi-author">
+            <div class="testi-avatar" style="background:linear-gradient(135deg,var(--neon-cyan),var(--neon-blue))">MJ
+            </div>
+            <div>
+              <div class="testi-name">Marcus Johansson</div>
+              <div class="testi-role">Founder, Vortex Films</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="neon-divider"></div>
+
+  <!-- ═══════════════════════════════════
+       CONTACT SECTION
+       Form upgraded: proper IDs, AJAX POST
+       to /send, success/error messages.
+  ════════════════════════════════════ -->
+  <section id="contact">
+    <div class="section-inner">
+      <div class="contact-wrap">
+
+        <!-- Left: info + social links -->
+        <div class="fade-in">
+          <div class="section-label">06 / Contact</div>
+          <h2 class="contact-info-title">
+            Let's Build Something <span class="glow">Futuristic</span>
+          </h2>
+          <p class="contact-desc">
+            Ready to elevate your brand into the next dimension? Drop a message and let's
+            architect something extraordinary together.
+          </p>
+          <div class="contact-links">
+            <a href="mailto:hello@grphiwavemotion.com" class="contact-link">
+              <span class="contact-link-icon">✉</span>
+              hello@grphiwavemotion.com
+            </a>
+            <a href="#" class="contact-link">
+              <span class="contact-link-icon">𝕏</span>
+              @grphiwavemotion
+            </a>
+            <a href="#" class="contact-link">
+              <span class="contact-link-icon">▶</span>
+              youtube.com/grphiwavemotion
+            </a>
+            <a href="#" class="contact-link">
+              <span class="contact-link-icon">📸</span>
+              instagram.com/grphiwavemotion
+            </a>
+            <a href="#" class="contact-link">
+              <span class="contact-link-icon">in</span>
+              linkedin.com/in/grphiwavemotion
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: contact form -->
+        <form class="contact-form-wrap fade-in" id="contact-form">
+
+          <!-- Name + Email row -->
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="contact-name">Name</label>
+              <input id="contact-name" class="form-input" type="text" name="name" placeholder="Your name"
+                autocomplete="name" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="contact-email">Email</label>
+              <input id="contact-email" class="form-input" type="email" name="email" placeholder="your@email.com"
+                autocomplete="email" required>
+            </div>
+          </div>
+
+          <!-- Service selector -->
+          <div class="form-group">
+            <label class="form-label" for="contact-service">Service</label>
+            <select id="contact-service" class="form-input" name="service" style="appearance:none; cursor:none;">
+              <option style="background:#030712">Branding Design</option>
+              <option style="background:#030712">Social Media Content</option>
+              <option style="background:#030712">Motion Graphics</option>
+              <option style="background:#030712">Video Editing</option>
+              <option style="background:#030712">Other</option>
+            </select>
+          </div>
+
+          <!-- Message textarea -->
+          <div class="form-group">
+            <label class="form-label" for="contact-message">Message</label>
+            <textarea id="contact-message" class="form-input" name="message"
+              placeholder="Describe your project vision..." required></textarea>
+          </div>
+
+          <!-- Submit button — wired to form submit listener in main.js -->
+          <button id="contact-submit" class="btn-submit" type="submit">
+            ⚡ Transmit Message
+          </button>
+
+          <!-- Inline feedback message (success / error) -->
+          <div id="form-message"></div>
+
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       FOOTER
+  ════════════════════════════════════ -->
+  <footer>
+    <div class="footer-logo">GRPHIWAVEMOTION</div>
+    <div class="footer-copy">© 2025 Grphiwavemotion — All Rights Reserved</div>
+    <div class="footer-socials">
+      <a href="#" class="footer-social">𝕏</a>
+      <a href="#" class="footer-social">in</a>
+      <a href="#" class="footer-social">▶</a>
+      <a href="#" class="footer-social">📸</a>
+    </div>
+  </footer>
+
+  <!-- External JS (extracted + upgraded from original inline script) -->
+  <script src="./js/main.js"></script>
+</body>
+
+</html>
